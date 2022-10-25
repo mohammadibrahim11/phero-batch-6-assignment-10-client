@@ -24,7 +24,8 @@ import Root from '../components/Root/Root';
                 },
                 {
                     path:'/courses',
-                    element:<Courses/>
+                    element:<Courses/>,
+                    loader: ()=> fetch('http://localhost:5000/courses')
                 },
                 {
                     path:'/faq',
