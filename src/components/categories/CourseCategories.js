@@ -1,14 +1,14 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
-const Home = () => {
+const CourseCategories = () => {
     const categories = useLoaderData();
     console.log(categories);
     return (
         <div>
-            this is home page
+            all  categories:{categories.id}
         </div>
     );
 };
 
-export default Home;
+export default CourseCategories;

@@ -1,26 +1,28 @@
-import React from 'react';
+import React from "react";
 
-const Course = ({course}) => {
-    const {picture,course_name} = course;
-    console.log(course);
-    return (
-        <div>
-            {/* this is course:{course._id} */}
-            {/* row-cols-1 row-cols-md-3 g-4 */}
-            <div class="row ">
-  <div class="col">
-    <div class="card h-100">
-      <img src={picture} class="card-img-top" alt="..."/>
-      <div class="card-body">
-        <h5 class="card-title">{course_name}</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+const Course = ({ course }) => {
+  const { course_name,picture } = course;
+  console.log(course);
+  return (
+    <div className="  ">
+<div className="  row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
+<div className="col">
+    <div className="card h-100">
+      <img src={picture} className="card-img-top" alt="..."/>
+      <div className="card-body">
+      <h5 className="card-title">{course_name}</h5>
+        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+      <div className="card-footer">
+        <small className="text-muted">Last updated 3 mins ago</small>
       </div>
     </div>
   </div>
 
 </div>
-        </div>
-    );
+
+   </div>
+  );
 };
 
 export default Course;
