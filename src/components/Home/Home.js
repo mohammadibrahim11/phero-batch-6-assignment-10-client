@@ -1,12 +1,14 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../Context/Usercontext';
+// import { useLoaderData } from 'react-router-dom';
 
 const Home = () => {
-    const categories = useLoaderData();
-    console.log(categories);
+    const {user} = useContext(AuthContext)
+
     return (
         <div>
-            this is home page
+            welcome to my home page {user?.email}
         </div>
     );
 };

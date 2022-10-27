@@ -1,27 +1,24 @@
 import React from "react";
+import './Course.css'
+import { Link } from "react-router-dom";
 
 const Course = ({ course }) => {
-  const { course_name,picture } = course;
-  console.log(course);
+  const { course_name,picture,description,total_student } = course;
+  // console.log(course);
   return (
-    <div className="  ">
-<div className="  row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
-<div className="col">
-    <div className="card h-100">
-      <img src={picture} className="card-img-top" alt="..."/>
-      <div className="card-body">
-      <h5 className="card-title">{course_name}</h5>
-        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-      <div className="card-footer">
-        <small className="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
+  
+     <div>
+          <div className="card text-start mt-4" style={{width:'18rem',heigth:"auto"}}>
+        <img src={picture} className="card-img-top" alt="..."/>
+         <div className="card-body">
+      <h5 className="card-title"> Name : {course_name}</h5>
+      <h5 className="card-title"> Student : {total_student}</h5>
+      <p className="card-text"> {description.slice(0,44)} ...</p>
+      <Link to="" className="btn btn-primary">about course</Link>
+          </div>
   </div>
+     </div>
 
-</div>
-
-   </div>
   );
 };
 

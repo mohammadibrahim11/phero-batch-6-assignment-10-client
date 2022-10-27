@@ -1,12 +1,16 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+// import Category from '../Category/Category';
+// import { useLoaderData } from 'react-router-dom';
 
-const CourseCategories = () => {
-    const categories = useLoaderData();
-    console.log(categories);
+const CourseCategories = ({category}) => {
+
+ const {category_name,id}=category
+//   console.log(category);
     return (
         <div>
-            all  categories:{categories.id}
+         <Link to={`/singlecategory/${id}`}>{category_name}</Link>
+         {/* <Category></Category> */}
         </div>
     );
 };
