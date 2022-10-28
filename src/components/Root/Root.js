@@ -1,16 +1,30 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-// import Layout from '../../layout/Layout';
-import Header from '../Header/Header';
+import React from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { Outlet } from "react-router-dom";
+import Footer from "../Footer/Footer";
+
+import Header from "../Header/Header";
+import LeftSideNav from "../LeftSideNav/LeftSideNav";
 
 const Root = () => {
-    return (
-
-        <div>
-          <Header></Header>
-          <Outlet></Outlet>
-        </div>
-    );
+  return (
+    <div>
+      <Header></Header>
+      <Container>
+        <Row>
+          <Col lg="2">
+           <LeftSideNav></LeftSideNav>
+          </Col>
+          <Col lg="10">
+         
+              <Outlet></Outlet>
+           
+          </Col>
+        </Row>
+      </Container>
+      <Footer></Footer>
+    </div>
+  );
 };
 
 export default Root;

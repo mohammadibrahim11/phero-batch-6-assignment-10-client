@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Context/Usercontext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 const Login = () => {
-  const { signIn,signInWithGoogle } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
+  const navigate =  useNavigate();
 
   // const [userInfo, setUserInfo] = useState({
   //   email: "",
@@ -76,20 +78,21 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate('/courses')
       })
       .catch((error) => {
         console.error(error);
       });
   };
 
-  const handleGoogleLogIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch((error) => console.error(error));
-  };
+  // const handleGoogleLogIn = () => {
+  //   signInWithGoogle()
+  //     .then((result) => {
+  //       const user = result.user;
+  //       console.log(user);
+  //     })
+  //     .catch((error) => console.error(error));
+  // };
   return (
     <div className="w-50 m-auto mt-5 pt-5 container">
       <form onSubmit={handleSubmit} className="w-50 m-auto border rounded p-4">
@@ -136,14 +139,14 @@ const Login = () => {
           </div>
         </div>
         <div>
-          <button href="" className="btn btn-primary w-full">
+          <button className="btn btn-primary w-full">
             Log in
           </button>
         </div>
-        <div>
-          <button  type="submit">github</button>
-          <button onClick={handleGoogleLogIn} type="submit">google</button>
-        </div>
+        {/* <div>
+          <button className="btn btn-primary">sign in with github</button>
+          <button onClick={handleGoogleLogIn} type="submit" className="btn btn-primary">sign in with google</button>
+        </div> */}
       </form>
     </div>
   );

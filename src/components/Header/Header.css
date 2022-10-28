@@ -1,0 +1,16 @@
+.rounded-circle {
+  width: 42px;
+  height: auto;
+}
+.navbar {
+  background-color: #7532f9;
+}
+
+.navbar-brand {
+  color: aliceblue;
+  font-size: 21px;
+}
+
+.navbar-brand:hover {
+  color: #cfcfcf;
+}

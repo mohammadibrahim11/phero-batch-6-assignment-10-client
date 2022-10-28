@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Blog from "../components/Blog/Blog";
 import Category from "../components/category/Category";
 import Courses from "../components/Courses/Courses";
+import Enrollcourse from "../components/Enrollcourse/Enrollcourse";
 import Faq from "../components/Faq/Faq";
 import Home from "../components/Home/Home";
 import Login from "../components/LogIn/Login";
@@ -20,24 +21,24 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      {
-        path: "/home",
-        element: <Home />,
-   
-      },
+    
       {
         path: "/courses",
-        element: <Privateroute><Courses /></Privateroute>,
+        element: <Courses />,
         loader: () => fetch('http://localhost:5000/courses'),
       },
       {
-          path:'/singlecategory/:id',
+          path:'/singleCategory/:id',
           loader: async({params})=>{
             console.log(params);
             return fetch(`http://localhost:5000/category/${params.id}`)
             
           },
           element:<Category></Category>
+      },
+      {
+       path:'/enrollcourse/:id',
+       element: <Privateroute> <Enrollcourse></Enrollcourse> </Privateroute>
       },
 
       {
