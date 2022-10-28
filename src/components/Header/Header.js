@@ -39,7 +39,7 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav  m-auto mb-2 mb-lg-0 text-light  ">
               <li className="nav-item me-2">
-                <Link className="nav-link text-light active" aria-current="page" to="/">
+                <Link className="nav-link text-light active" aria-current="page" to="/courses">
                   Home
                 </Link>
               </li>

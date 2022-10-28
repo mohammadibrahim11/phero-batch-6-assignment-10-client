@@ -2,8 +2,10 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Blog from "../components/Blog/Blog";
 import Category from "../components/category/Category";
+import Courseitem from "../components/Courseitem/Courseitem";
 import Courses from "../components/Courses/Courses";
 import Enrollcourse from "../components/Enrollcourse/Enrollcourse";
+import Errorpage from "../components/Errorpage/Errorpage";
 import Faq from "../components/Faq/Faq";
 import Home from "../components/Home/Home";
 import Login from "../components/LogIn/Login";
@@ -12,33 +14,37 @@ import Register from "../components/Register/Register";
 import Root from "../components/Root/Root";
 
 export const router = createBrowserRouter([
+
   {
     path: "/",
     element: <Root></Root>,
-    
+    errorElement:<Errorpage></Errorpage>,
     children: [
       {
+  
         path: "/",
         element: <Home />,
-      },
+     
+    },
     
       {
         path: "/courses",
         element: <Courses />,
-        loader: () => fetch('http://localhost:5000/courses'),
+        loader: () => fetch('https://b610-server-site.vercel.app/courses'),
       },
       {
           path:'/singleCategory/:id',
           loader: async({params})=>{
             console.log(params);
-            return fetch(`http://localhost:5000/category/${params.id}`)
+            return fetch(`https://b610-server-site.vercel.app/courses/${params.id}`)
             
           },
-          element:<Category></Category>
+          element:<Courseitem></Courseitem>
       },
       {
-       path:'/enrollcourse/:id',
-       element: <Privateroute> <Enrollcourse></Enrollcourse> </Privateroute>
+       path:'/courses/:id',
+       element: <Privateroute> <Enrollcourse></Enrollcourse> </Privateroute>,
+       loader: ({params})=>fetch(`https://b610-server-site.vercel.app/courses/${params.id}`)
       },
 
       {
@@ -59,5 +65,7 @@ export const router = createBrowserRouter([
       },
    
     ],
+    
   },
+
 ]);

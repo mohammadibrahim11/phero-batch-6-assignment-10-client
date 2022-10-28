@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 
 import Header from "../Header/Header";
 import LeftSideNav from "../LeftSideNav/LeftSideNav";
+import Login from "../LogIn/Login";
 
 const Root = () => {
   return (
@@ -20,6 +21,7 @@ const Root = () => {
               <Outlet></Outlet>
            
           </Col>
+        
         </Row>
       </Container>
       <Footer></Footer>

@@ -1,16 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
-const Courseitem = ({ item }) => {
+const Courseitem = (  ) => {
+    const item = useLoaderData();
+    console.log(item);
   const {
     description,
     course_name,
     picture,
     ratings,
-    category_id,
+    id,
     total_student,
     price,
     instructor,
+    duration
   } = item;
   console.log(item);
   return (
@@ -22,6 +25,7 @@ const Courseitem = ({ item }) => {
         >
           <img src={picture} className="card-img-top" alt="..." />
           <div className="card-body">
+            <p>{duration}</p>
             <h5 className="card-title"> Name : {course_name}</h5>
             <h5 className="card-title"> total enrolled : {total_student}</h5>
             <h6>ratings :{ratings} </h6>
@@ -29,7 +33,7 @@ const Courseitem = ({ item }) => {
             <p>price : {price}</p>
 
             <Link
-              to={`/singleCategory/${category_id}`}
+              to={`/courses/${id}`}
               className="btn btn-primary"
             >
               enroll now

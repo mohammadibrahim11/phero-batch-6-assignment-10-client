@@ -14,7 +14,7 @@ const LeftSideNav = () => {
       .then((data) => setCategories( data))
   }, []);
   return (
-    <div>
+    <div className="mt-5">
       all categories:{categories.length}
       <div>
         {categories.map((category) => (

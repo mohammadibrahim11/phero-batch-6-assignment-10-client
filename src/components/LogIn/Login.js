@@ -1,10 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../Context/Usercontext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
+
+  const [error,setError]=useState('');
+
   const { signIn } = useContext(AuthContext);
   const navigate =  useNavigate();
+  const location =useLocation();
+  const from = location.state?.from?.pathname || '/';
+
+  
 
   // const [userInfo, setUserInfo] = useState({
   //   email: "",
@@ -61,7 +68,7 @@ const Login = () => {
   //     })
   //     .catch((error) => {
   //       console.error(error);
-  //       // setErrors({...errors,genaral:error.message})
+  //       setErrors({...errors,genaral:error.message})
 
   //     });
   // };
@@ -78,10 +85,15 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate('/courses')
+        navigate(from,{replace:true});
+        form.reset();
+        setError('')
       })
       .catch((error) => {
         console.error(error);
+        // setErrors({...errors, genaral:error.message})
+        setError(error.message)
+      
       });
   };
 
@@ -106,7 +118,7 @@ const Login = () => {
             id="email"
             name="email"
             // value={userInfo.email}
-           
+          //  onChange={handleEmailChange}
             placeholder="Your email address"
           />
      
@@ -121,12 +133,14 @@ const Login = () => {
             id="password"
             name="password"
             placeholder="Password"
-          
-           
+            // onChange={handlePasswordChange}
             autocomplete="current-password"
           />
-        
+         
         </div>
+           <div className="text-danger">
+            {error}
+           </div>
         <div className="mb-3 text-start">
           <div>
             Don't have an account? Go to{" "}
@@ -143,6 +157,7 @@ const Login = () => {
             Log in
           </button>
         </div>
+        {/* {errors} */}
         {/* <div>
           <button className="btn btn-primary">sign in with github</button>
           <button onClick={handleGoogleLogIn} type="submit" className="btn btn-primary">sign in with google</button>
