@@ -56,8 +56,8 @@ const Register = () => {
       .catch((error) => console.error(error));
   };
   return (
-    <div className="w-50 m-auto mt-5 pt-5 container">
-      <form onSubmit={handleSubmit} className="w-50 m-auto border rounded p-4">
+    <div className=" m-auto mt-5 pt-5 ">
+      <form onSubmit={handleSubmit} className="w-50 m-auto border rounded p-2">
         <div className="mb-3 text-start ">
           <label className="form-label " for="email">
             Your Name
@@ -117,11 +117,12 @@ const Register = () => {
           <div>
             <button
               onClick={handleGoogleSignIn}
-              className="btn btn-primary w-full mb-2"
+              className="btn btn-primary w-full  ps-2 me-2 "
             >
               sign in with google
             </button>
-            <button onClick={handleGithubSignIN} className="btn btn-primary w-full mb-2">
+            {/* <br/> */}
+            <button onClick={handleGithubSignIN} className="btn btn-primary w-full ps-2 ms-2">
               sign in with github
             </button>
           </div>

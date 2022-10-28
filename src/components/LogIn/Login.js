@@ -106,7 +106,7 @@ const Login = () => {
   //     .catch((error) => console.error(error));
   // };
   return (
-    <div className="w-50 m-auto mt-5 pt-5 container">
+    <div className=" m-auto mt-5 pt-5">
       <form onSubmit={handleSubmit} className="w-50 m-auto border rounded p-4">
         <div className="mb-3 text-start ">
           <label className="form-label " for="email">
