@@ -82,20 +82,24 @@ const Header = () => {
                   Log out
                 </div>
               ) : (
-                <Link className="btn btn-outline-primary text-light me-2" to="/login">
+                <div>
+                    <Link className="btn btn-outline-primary text-light me-2" to="/login">
                   Log in
                 </Link>
+                 <Link className="btn btn-outline-primary text-light" to="/register">
+                 register
+               </Link>
+                </div>
               )}
-              <Link className="btn btn-outline-primary text-light" to="/register">
-                register
-              </Link>
+             
             </div>
             <div className="ms-2">
               {user?.uid && (
                  <img className="rounded-circle" src={user.photoURL} alt="" />
               
               )}
-               <span> {user?.email} </span>
+               <span> {user?.email
+               } </span>
          
             </div>
     
