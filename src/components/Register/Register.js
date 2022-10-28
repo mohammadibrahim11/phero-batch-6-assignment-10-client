@@ -5,9 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/Usercontext";
 
 const Register = () => {
-  const { createUser, signInWithGoogle,signInWithGitHub } = useContext(AuthContext);
+  const [error,setError]=useState('');
+
+  const { updateUserProfile, createUser, signInWithGoogle,signInWithGitHub } = useContext(AuthContext);
   const navigate=useNavigate();
-  const [passwordError,setPasswordError]=useState('');
+  // const [passwordError,setPasswordError]=useState('');
   console.log(createUser);
 
   const handleSubmit = (event) => {
@@ -16,24 +18,21 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password);
-    if(!/(?=.*[A-Z].*[A-Z])/.test(password)){
-      setPasswordError('provide at least two uppercase')
-       return;
-    }
-    if(password.length < 6){
-      setPasswordError('must be at least 6 charecters')
-      return;
-    }
-    setPasswordError('')
+    const photoURL =form.photoURL.value;
+    console.log(name, email, password,photoURL);
+  
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         navigate('/login')
         console.log(user);
+        setError('')
+        form.reset()
+        handleUserProfile(name,photoURL);
       })
       .catch((error) => {
         console.error(error);
+        setError(error.message)
       });
   };
 
@@ -43,17 +42,29 @@ const Register = () => {
         const user = result.user;
         navigate('/courses')
         console.log(user);
+        setError('')
       })
       .catch((error) => console.error(error));
+      setError(error.message)
   };
+
+  const handleUserProfile = (name,photoURL)=>{
+    const profile = {displayName:name,
+    photoURL:photoURL}
+    updateUserProfile(profile)
+    .then(()=>{})
+    .cathc((error)=>console.error(error))
+  }
   const handleGithubSignIN = () => {
     signInWithGitHub()
       .then((result) => {
         const user = result.user;
         navigate('/courses')
         console.log(user);
+        setError('')
       })
       .catch((error) => console.error(error));
+      setError(error.message)
   };
   return (
     <div className=" m-auto mt-5 pt-5 ">
@@ -68,6 +79,19 @@ const Register = () => {
             id="name"
             name="name"
             placeholder="enter your name"
+            required
+          />
+        </div>
+        <div className="mb-3 text-start ">
+          <label className="form-label " for="photoURL">
+            photoURL
+          </label>
+          <input
+            type="photoURL"
+            className="form-control"
+            id="name"
+            name="photoURL"
+            placeholder=""
             required
           />
         </div>
@@ -99,7 +123,7 @@ const Register = () => {
             required
           />
         </div>
-        <p className="text-danger">{passwordError}</p>
+        {/* <p className="text-danger">{passwordError}</p> */}
         <div className="mb-3 text-center">
           <div>
             {" "}
@@ -111,6 +135,9 @@ const Register = () => {
               </Link>
             </span>
           </div>
+        </div>
+        <div className="text-danger">
+          {error}
         </div>
         <div>
           <button className="btn btn-primary w-full mb-2">Register</button>

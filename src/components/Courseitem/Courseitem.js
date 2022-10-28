@@ -34,9 +34,9 @@ const Courseitem = (  ) => {
 
             <Link
               to={`/courses/${id}`}
-              className="btn btn-primary"
+              className="btn btn-primary ps-3 pe-3"
             >
-              enroll now
+              premium access
             </Link>
           </div>
         </div>

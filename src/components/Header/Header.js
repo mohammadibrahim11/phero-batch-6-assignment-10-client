@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 // import Container from 'react-bootstrap/Container';
 import { Link } from "react-router-dom";
@@ -10,6 +10,9 @@ import ReactTooltip from 'react-tooltip';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const Header = () => {
+  const [theme,setTheme] = useState('light');
+  const [togClass,setTogClass]=useState()
+
   const { user, logOut } = useContext(AuthContext);
 
   const handleSignOut = () => {
@@ -17,6 +20,16 @@ const Header = () => {
       .then(() => {})
       .catch((error) => console.error(error));
   };
+
+  // const handleOnClick = () => {
+  //   if (localStorage.getItem('theme') === 'theme-dark') {
+  //       setTheme('theme-light');
+  //       setTogClass('light')
+  //   } else {
+  //       setTheme('theme-dark');
+  //       setTogClass('dark')
+  //   }
+  // }
   // console.log(user);
   return (
     <div>
@@ -39,7 +52,7 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav  m-auto mb-2 mb-lg-0 text-light  ">
               <li className="nav-item me-2">
-                <Link className="nav-link text-light active" aria-current="page" to="/courses">
+                <Link className="nav-link text-light active" aria-current="page" to="/home">
                   Home
                 </Link>
               </li>
@@ -79,12 +92,18 @@ const Header = () => {
             </div>
             <div className="ms-2">
               {user?.uid && (
-                 <img className="rounded-circle " src={user.photoURL} alt="" />
+                 <img className="rounded-circle" src={user.photoURL} alt="" />
               
               )}
                <span> {user?.email} </span>
          
             </div>
+    
+      
+        {/* <button onClick={handleOnClick}>Toggle theme</button> */}
+     
+   
+
           </div>
         </div>
       </nav>
